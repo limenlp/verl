@@ -436,7 +436,7 @@ class RayPPOTrainer(object):
                                                        collate_fn=collate_fn,
                                                        batch_sampler=self.sampler)
         else:
-            elif self.config.data.shuffle:
+            if self.config.data.shuffle:
                 train_dataloader_generator = torch.Generator()
                 train_dataloader_generator.manual_seed(self.config.data.get('seed', 1))
                 sampler = RandomSampler(data_source=self.train_dataset, generator=train_dataloader_generator)
